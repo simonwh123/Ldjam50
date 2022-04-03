@@ -28,6 +28,8 @@
         
         SubShader
         {
+
+
             Pass
             {
                 CGPROGRAM
@@ -298,8 +300,10 @@
                 #include "FurHelper.cginc"
                 
                 ENDCG
-                
+
             }
+            
+
         }
     }
 }

@@ -159,12 +159,12 @@ Shader "IL3DN/Leaf"
 		}
 
 		ENDCG
-		CGPROGRAM
-		#pragma exclude_renderers vulkan xbox360 psp2 n3ds wiiu 
-		#pragma surface surf Lambert keepalpha fullforwardshadows nolightmap  nodirlightmap dithercrossfade vertex:vertexDataFunc 
+			CGPROGRAM
+#pragma exclude_renderers vulkan xbox360 psp2 n3ds wiiu 
+#pragma surface surf Lambert keepalpha fullforwardshadows nolightmap  nodirlightmap dithercrossfade vertex:vertexDataFunc 
 
-		ENDCG
-		Pass
+			ENDCG
+			Pass
 		{
 			Name "ShadowCaster"
 			Tags{ "LightMode" = "ShadowCaster" }

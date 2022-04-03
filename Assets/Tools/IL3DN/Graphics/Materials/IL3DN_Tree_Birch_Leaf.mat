@@ -44,6 +44,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Diffuse:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -100,13 +104,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - AlphaCutoff: 1
     - AlphaCutoffFloat: 0.5
     - LeavesAlphaCutoff: 0.5
     - SnowLeavesFloat: 1
     - SnowSizeFloat: 1
-    - _AlphaCutoff: 0.5
+    - _AlphaCutoff: 0.803
     - _Bend: 1
     - _BumpScale: 1
     - _ColorVariationNoise: 1
@@ -118,8 +123,10 @@ Material:
     - _CullFrontFaces: 0
     - _CurveMultiplier: 0
     - _Cutoff: 0.5
+    - _Density: 50
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _ExcludeSkybox: 0
     - _Fl: 1
     - _Float0: 1
     - _Float1: 10
@@ -176,10 +183,14 @@ Material:
     - _Color0: {r: 0.51193607, g: 1, b: 0, a: 1}
     - _CurveSphereTip: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _FarColor: {r: 0, g: 0.2739539, b: 1, a: 0}
+    - _GlowColor: {r: 1, g: 0.2038271, b: 0, a: 0}
     - _HueVariation: {r: 1, g: 1, b: 1, a: 1}
+    - _NearColor: {r: 1, g: 0.2038271, b: 0, a: 0}
     - _Snow: {r: 1, g: 1, b: 1, a: 0}
     - _SnowColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _TranslucencyColor: {r: 0.72321427, g: 1, b: 0, a: 1}
     - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
     - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
