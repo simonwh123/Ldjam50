@@ -19,6 +19,11 @@ public class IntroManager : MonoBehaviour
     private bool carScene;
     private bool dialogueStarted;
 
+    [SerializeField]
+    GameObject cameraToDestroy;
+    [SerializeField]
+    GameObject cameraToEnable;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -40,7 +45,8 @@ public class IntroManager : MonoBehaviour
 
         if (dialogueManager.GetComponent<TriggerDialogue>().isDialogueActive == false && dialogueStarted == true && switchSceneAfterDialogue == false && carScene == true)
         {
-            Camera.main.GetComponent<PlayableDirector>().enabled = true;
+            cameraToEnable.SetActive(true);
+            cameraToDestroy.SetActive(false);
         }
     }
 
