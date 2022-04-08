@@ -60,6 +60,7 @@ namespace ECM.Examples
         public void LateUpdate()
         {
             transform.position = Vector3.Lerp(transform.position, cameraRelativePosition, followSpeed * Time.deltaTime);
+            targetTransform = GameObject.FindGameObjectWithTag("Animal").transform;
         }
 
         #endregion
