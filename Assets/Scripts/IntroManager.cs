@@ -18,11 +18,9 @@ public class IntroManager : MonoBehaviour
     [SerializeField]
     private bool carScene;
     private bool dialogueStarted;
-
-    [SerializeField]
-    GameObject cameraToDestroy;
-    [SerializeField]
-    GameObject cameraToEnable;
+ 
+    public GameObject cameraToDestroy;
+    public GameObject cameraToEnable;
 
     // Start is called before the first frame update
     void Awake()
