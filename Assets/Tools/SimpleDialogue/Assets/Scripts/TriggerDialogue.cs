@@ -29,14 +29,17 @@ public class TriggerDialogue : MonoBehaviour
         isDialogueActive = false;
     }
 
-    void LateUpdate()
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E) && npcDialogue.dialogueTimer < 0 && isDialogueActive/* && npcDialogue.colliding == true*/)
+        {
+            ContinueDialogue();
+        }
     }
 
     public void StartDialogue(GameObject npc) {
         // dialogue will only start if it's not currently active
-        if (!isDialogueActive) {
+        if (!isDialogueActive && npcDialogue.dialogueTimer < 0) {
             // get dialogue script of npc
             dialogue = npc.GetComponent<Dialogue>();
             charImage.sprite = dialogue.charImg;
@@ -91,6 +94,7 @@ public class TriggerDialogue : MonoBehaviour
             {
                 animDialogue.SetBool("open", false); // end if there's no more sentence left to display
                 isDialogueActive = false;
+                npcDialogue.dialogueTimer = 1;
             }
             
         }

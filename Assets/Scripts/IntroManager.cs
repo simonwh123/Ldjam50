@@ -16,41 +16,41 @@ public class IntroManager : MonoBehaviour
     [SerializeField]
     private bool switchSceneAfterDialogue;
     [SerializeField]
-    private bool carScene;
     private bool dialogueStarted;
  
     public GameObject cameraToDestroy;
     public GameObject cameraToEnable;
 
     // Start is called before the first frame update
-    void Awake()
+    public void Start()
     {
         Invoke("StartDialogue", 4);
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (dialogueManager.GetComponent<TriggerDialogue>().isDialogueActive == true)
-        {
-            dialogueStarted = true;
-        }
 
-        if (dialogueManager.GetComponent<TriggerDialogue>().isDialogueActive == false && dialogueStarted == true && switchSceneAfterDialogue == true)
+        if (dialogueManager.GetComponent<TriggerDialogue>().isDialogueActive == false && dialogueStarted == true)
         {
-            StartCoroutine("switchScene");
-        }
-
-        if (dialogueManager.GetComponent<TriggerDialogue>().isDialogueActive == false && dialogueStarted == true && switchSceneAfterDialogue == false && carScene == true)
-        {
-            cameraToEnable.SetActive(true);
-            cameraToDestroy.SetActive(false);
+            if (switchSceneAfterDialogue)
+            {
+                StartCoroutine("switchScene");
+            }
+            else
+            {
+                cameraToEnable.SetActive(true);
+                cameraToDestroy.SetActive(false);
+            }
         }
     }
 
     public void StartDialogue()
     {
         dialogueEvent.Invoke();
+        dialogueStarted = true;
+        npcDialogue.dialogueTimer = 0;
     }
 
     IEnumerator switchScene()
