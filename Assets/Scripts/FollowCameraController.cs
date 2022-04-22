@@ -7,7 +7,7 @@ namespace ECM.Examples
         #region PUBLIC FIELDS
 
         [SerializeField]
-        private Transform _targetTransform;
+        public Transform _targetTransform;
 
         [SerializeField]
         private float _distanceToTarget = 15.0f;

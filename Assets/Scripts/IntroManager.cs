@@ -32,7 +32,7 @@ public class IntroManager : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (dialogueManager.GetComponent<TriggerDialogue>().isDialogueActive == false && dialogueStarted == true)
+        if (TriggerDialogue.isDialogueActive == false && dialogueStarted == true)
         {
             if (switchSceneAfterDialogue)
             {
@@ -50,7 +50,7 @@ public class IntroManager : MonoBehaviour
     {
         dialogueEvent.Invoke();
         dialogueStarted = true;
-        npcDialogue.dialogueTimer = 0;
+        npcInteract.dialogueTimer = 0;
     }
 
     IEnumerator switchScene()

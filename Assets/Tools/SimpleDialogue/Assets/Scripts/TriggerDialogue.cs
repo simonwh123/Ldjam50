@@ -14,7 +14,7 @@ public class TriggerDialogue : MonoBehaviour
     Dialogue dialogue;
     IEnumerator textTypeCoroutine; // keep a single copy of a coroutine
     int sentenceCount;
-    public bool isDialogueActive; // flag to check if there's an on going conversation
+    public static bool isDialogueActive; // flag to check if there's an on going conversation
     [SerializeField]
     AudioSource sound;
 
@@ -25,21 +25,23 @@ public class TriggerDialogue : MonoBehaviour
         charImage = dialogueCanvas.transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>();
         charName = dialogueCanvas.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>(); // get the text reference for character name
         textDialogue = dialogueCanvas.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>(); // get the text reference for dialogue
-        animDialogue.SetBool("open",false);
+        animDialogue.SetBool("open", false);
         isDialogueActive = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && npcDialogue.dialogueTimer < 0 && isDialogueActive/* && npcDialogue.colliding == true*/)
+        if (Input.GetKeyDown(KeyCode.E) && npcInteract.dialogueTimer < 0 && isDialogueActive/* && npcDialogue.colliding == true*/)
         {
             ContinueDialogue();
         }
     }
 
-    public void StartDialogue(GameObject npc) {
+    public void StartDialogue(GameObject npc)
+    {
         // dialogue will only start if it's not currently active
-        if (!isDialogueActive && npcDialogue.dialogueTimer < 0) {
+        if (!isDialogueActive && npcInteract.dialogueTimer < 0)
+        {
             // get dialogue script of npc
             dialogue = npc.GetComponent<Dialogue>();
             charImage.sprite = dialogue.charImg;
@@ -50,13 +52,15 @@ public class TriggerDialogue : MonoBehaviour
             animDialogue.SetBool("open", true);
             isDialogueActive = true;
         }
-        
+
     }
 
     bool isSentenceFinished = false; // flag to check if sentence is still typing
-    IEnumerator TypeDialogue(string sentence) {
+    IEnumerator TypeDialogue(string sentence)
+    {
         string textDisplay = "";
-        foreach (char letter in sentence.ToCharArray()) {
+        foreach (char letter in sentence.ToCharArray())
+        {
             isSentenceFinished = false;
             textDisplay += letter;
             yield return new WaitForSeconds(textSpeed);
@@ -66,7 +70,8 @@ public class TriggerDialogue : MonoBehaviour
         isSentenceFinished = true;
     }
 
-    public void ContinueDialogue() {
+    public void ContinueDialogue()
+    {
         int sentences = dialogue.sentences.Length;
         if (sentenceCount < sentences - 1)
         {
@@ -76,14 +81,16 @@ public class TriggerDialogue : MonoBehaviour
                 textDialogue.text = dialogue.sentences[sentenceCount];
                 isSentenceFinished = true;
             }
-            else {
+            else
+            {
                 sentenceCount += 1; // go to next sentence if there's any
                 textTypeCoroutine = TypeDialogue(dialogue.sentences[sentenceCount]);
                 StartCoroutine(textTypeCoroutine); // start displaying the next sentence
             }
-            
+
         }
-        else {
+        else
+        {
             StopCoroutine(textTypeCoroutine);
             if (!isSentenceFinished)
             {
@@ -94,9 +101,9 @@ public class TriggerDialogue : MonoBehaviour
             {
                 animDialogue.SetBool("open", false); // end if there's no more sentence left to display
                 isDialogueActive = false;
-                npcDialogue.dialogueTimer = 1;
+                npcInteract.dialogueTimer = 1;
             }
-            
+
         }
     }
 }
